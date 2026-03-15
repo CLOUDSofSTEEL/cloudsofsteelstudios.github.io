@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Portal Login - Clouds of Steel</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background-color: #0d0d12; background-image: radial-gradient(circle at 50% 0%, #1f2235 0%, #0d0d12 60%); color: #e0e0e0; font-family: 'Montserrat', sans-serif; text-align: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 50px 40px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); max-width: 400px; width: 100%; margin: 20px; }
+        h1 { font-family: 'Teko', sans-serif; font-size: 3em; margin: 0 0 5px 0; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; }
+        p { color: #8a96a8; font-size: 0.9em; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        input { width: 100%; padding: 15px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(0, 0, 0, 0.3); color: #ffffff; font-family: inherit; font-size: 1em; box-sizing: border-box; margin-bottom: 20px; text-align: center; letter-spacing: 3px; }
+        input:focus { outline: none; border-color: #3182ce; box-shadow: 0 0 10px rgba(49, 130, 206, 0.3); }
+        .btn { display: block; width: 100%; padding: 15px; background-color: #2b6cb0; color: white; border: none; border-radius: 4px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; }
+        .btn:hover { background-color: #3182ce; box-shadow: 0 0 20px rgba(49, 130, 206, 0.5); transform: translateY(-2px); }
+        #error-msg { color: #ff4a4a; font-size: 0.85em; margin-top: 15px; display: none; }
+        .back-link { display: block; margin-top: 30px; color: #8a96a8; text-decoration: none; font-size: 0.85em; transition: color 0.3s; }
+        .back-link:hover { color: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h1>Team Hub</h1>
+        <p>Authorized Personnel Only</p>
+        
+        <input type="password" id="passInput" placeholder="ENTER ACCESS CODE">
+        <button class="btn" onclick="checkPassword()">Authenticate</button>
+        <div id="error-msg">Access Denied. Invalid Code.</div>
+        
+        <a href="index.html" class="back-link">← Return to Public Site</a>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("passInput").value;
+            // Change "dev2026" below to whatever password you want to give the team
+            if (password === "dev2026") {
+                window.location.href = "dev-portal.html";
+            } else {
+                document.getElementById("error-msg").style.display = "block";
+                document.getElementById("passInput").value = "";
+            }
+        }
+
+        // Allows pressing "Enter" to submit
+        document.getElementById("passInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") { event.preventDefault(); checkPassword(); }
+        });
+    </script>
+</body>
+</html>
