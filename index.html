@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clouds of Steel Studios</title>
+    
     <link rel="icon" type="image/png" href="favicon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +23,6 @@
             min-height: 100vh;
         }
 
-        /* Cinematic Header */
         header {
             padding: 120px 20px 40px;
         }
@@ -49,7 +49,6 @@
             padding: 20px 20px 80px;
         }
 
-        /* Frosted Glass Placeholder */
         .gallery-placeholder {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -68,7 +67,63 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Cyber/Neon Style Button */
+        /* Newsletter Capture Card */
+        .newsletter-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 0 auto 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .newsletter-card h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2em;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .newsletter-card p {
+            color: #8a96a8;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-family: inherit;
+        }
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #3182ce;
+        }
+        .btn-subscribe {
+            padding: 12px 25px;
+            background-color: #e2e8f0;
+            color: #0d0d12;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-subscribe:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
         .btn {
             display: inline-block;
             padding: 15px 35px;
@@ -90,7 +145,6 @@
             transform: translateY(-2px);
         }
 
-        /* Smooth Entry Animations */
         .animate-up {
             opacity: 0;
             transform: translateY(30px);
@@ -122,6 +176,16 @@
         
         <div class="gallery-placeholder animate-up delay-2">
             [ Future Home for In-Engine Renders & Gameplay Gifs ]
+        </div>
+
+        <div class="newsletter-card animate-up delay-3">
+            <h3>Join the Mailing List</h3>
+            <p>Sign up to get early access invites and development updates.</p>
+            
+            <form action="https://assets.mailerlite.com/jsonp/2194211/forms/182048772825548694/subscribe" method="post" class="newsletter-form">
+                <input type="email" name="fields[email]" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
         </div>
 
         <div class="animate-up delay-3">
