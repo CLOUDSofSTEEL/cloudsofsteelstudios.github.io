@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Clouds of Steel Studios</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        header {
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #1f1f1f 0%, #121212 100%);
+            border-bottom: 2px solid #333;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #aaaaaa;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: inherit;
+            box-sizing: border-box; /* Ensures padding doesn't break width */
+        }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1em;
+        }
+        .btn:hover {
+            background-color: #357abd;
+        }
+        .social-links {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <div class="container">
+        <p>Interested in joining the team or have a business inquiry? Send us a message below.</p>
+        
+        <form action="YOUR_FORMSPREE_LINK_HERE" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        <div class="social-links">
+            <h3>Connect With Us</h3>
+            <p>[ Discord Link Placeholder ] | [ X/Twitter Placeholder ] | [ YouTube Placeholder ]</p>
+        </div>
+
+        <a href="index.html" class="back-link">← Return to Homepage</a>
+    </div>
+</body>
+</html>
