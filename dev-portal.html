@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Portal - Clouds of Steel</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background-color: #0d0d12; color: #e0e0e0; font-family: 'Montserrat', sans-serif; }
+        header { background: #1a1a24; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        h1 { font-family: 'Teko', sans-serif; font-size: 2.5em; margin: 0; color: #3182ce; text-transform: uppercase; letter-spacing: 2px; }
+        .logout { color: #8a96a8; text-decoration: none; font-weight: 600; font-size: 0.9em; text-transform: uppercase; border: 1px solid #444; padding: 8px 15px; border-radius: 4px; transition: all 0.3s; }
+        .logout:hover { background: #333; color: white; }
+        .container { padding: 50px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .dash-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px; transition: transform 0.3s; }
+        .dash-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.04); }
+        .dash-card h2 { font-family: 'Teko', sans-serif; font-size: 2em; margin: 0 0 15px 0; color: #ffffff; letter-spacing: 1px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        .link-list { list-style: none; padding: 0; margin: 0; }
+        .link-list li { margin-bottom: 15px; }
+        .link-list a { color: #4a90e2; text-decoration: none; font-weight: 600; display: flex; align-items: center; }
+        .link-list a:hover { color: #ffffff; text-decoration: underline; }
+        .link-list p { margin: 5px 0 0 0; font-size: 0.85em; color: #8a96a8; line-height: 1.4; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>COS // Dev Hub</h1>
+        <a href="index.html" class="logout">Log Out</a>
+    </header>
+
+    <div class="container">
+        <div class="dash-card">
+            <h2>Source & Assets</h2>
+            <ul class="link-list">
+                <li>
+                    <a href="#">Private GitHub Repository →</a>
+                    <p>Clone directly to your JetBrains IDE. Do not push raw Unity asset packages to main.</p>
+                </li>
+                <li>
+                    <a href="#">Google Drive / Asset Vault →</a>
+                    <p>Secure folder for 3D models, Synty packs, and large textures.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dash-card">
+            <h2>Team Comms</h2>
+            <ul class="link-list">
+                <li>
+                    <a href="#">Studio Discord Server →</a>
+                    <p>Primary comms. Check #announcements for meeting times.</p>
+                </li>
+                <li>
+                    <a href="mailto:contact@cloudsofsteelstudios.com">Email Studio Admin →</a>
+                    <p>Direct line for administrative or external inquiries.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dash-card">
+            <h2>Production</h2>
+            <ul class="link-list">
+                <li>
+                    <a href="#">Trello / Task Board →</a>
+                    <p>Current sprint assignments and bug tracking.</p>
+                </li>
+                <li>
+                    <a href="#">Latest Playable Build →</a>
+                    <p>Download the most recent stable test environment.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
