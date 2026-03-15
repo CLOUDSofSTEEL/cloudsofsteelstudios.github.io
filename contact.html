@@ -4,120 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Clouds of Steel Studios</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #121212;
+            background-color: #0d0d12;
+            background-image: radial-gradient(circle at 50% 0%, #1f2235 0%, #0d0d12 60%);
             color: #e0e0e0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
+            min-height: 100vh;
         }
+
+        /* Cinematic Header */
         header {
-            padding: 60px 20px;
-            background: linear-gradient(180deg, #1f1f1f 0%, #121212 100%);
-            border-bottom: 2px solid #333;
+            padding: 100px 20px 20px;
         }
         h1 {
-            font-size: 2.5em;
+            font-family: 'Teko', sans-serif;
+            font-size: 4em;
             margin: 0;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
         }
+        p.subtitle {
+            font-size: 1.1em;
+            color: #8a96a8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
         .container {
-            padding: 40px 20px;
+            padding: 20px 20px 80px;
             max-width: 600px;
             margin: 0 auto;
         }
-        .form-group {
-            margin-bottom: 20px;
+
+        /* Frosted Glass Form Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             text-align: left;
+        }
+
+        /* Form Inputs Styling */
+        .form-group {
+            margin-bottom: 25px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #aaaaaa;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a96a8;
         }
         input, textarea {
             width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #444;
-            background-color: #1a1a1a;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             font-family: inherit;
-            box-sizing: border-box; /* Ensures padding doesn't break width */
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3182ce;
+            box-shadow: 0 0 10px rgba(49, 130, 206, 0.3);
+            background-color: rgba(0, 0, 0, 0.5);
         }
         textarea {
             resize: vertical;
             min-height: 120px;
         }
+
+        /* Cyber/Neon Style Button */
         .btn {
-            display: inline-block;
-            padding: 10px 25px;
-            background-color: #4a90e2;
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #2b6cb0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(43, 108, 176, 0.3);
+            border: 1px solid #3182ce;
             cursor: pointer;
-            transition: background 0.3s;
-            font-size: 1em;
+            margin-top: 10px;
         }
         .btn:hover {
-            background-color: #357abd;
+            background-color: #3182ce;
+            box-shadow: 0 0 25px rgba(49, 130, 206, 0.6);
+            transform: translateY(-2px);
         }
-        .social-links {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-        }
+
         .back-link {
             display: inline-block;
-            margin-top: 30px;
-            color: #4a90e2;
+            margin-top: 40px;
+            color: #8a96a8;
             text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
         .back-link:hover {
-            text-decoration: underline;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Smooth Entry Animations */
+        .animate-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: driftUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        @keyframes driftUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="animate-up">
         <h1>Contact Us</h1>
+        <p class="subtitle">Join the Team or Reach Out</p>
     </header>
 
-    <div class="container">
-        <p>Interested in joining the team or have a business inquiry? Send us a message below.</p>
-        
-        <form action="https://formspree.io/f/xykndavv" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-        <div class="social-links">
-            <h3>Connect With Us</h3>
-            <p>[ Discord Link Placeholder ] | [ X/Twitter Placeholder ] | [ YouTube Placeholder ]</p>
+    <div class="container animate-up delay-1">
+        <div class="glass-card">
+            <form action="https://formspree.io/f/xykndavv" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+            </form>
         </div>
 
-        <a href="index.html" class="back-link">← Return to Homepage</a>
+        <div class="animate-up delay-2">
+            <a href="index.html" class="back-link">← Return to Homepage</a>
+        </div>
     </div>
 </body>
 </html>
