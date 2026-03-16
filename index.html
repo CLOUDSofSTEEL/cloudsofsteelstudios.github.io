@@ -195,5 +195,28 @@
             <a href="contact.html" class="btn">Contact Us</a>
         </div>
     </div>
+    <script>
+        const subtitle = document.querySelector('.subtitle');
+        const text = "Independent Game Development";
+        subtitle.innerHTML = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // Adds the blinking cursor at the end
+                subtitle.innerHTML += '<span style="animation: blink 1s infinite;">_</span>';
+            }
+        }
+        
+        // Starts the typing effect after a short delay so the page can fade in first
+        setTimeout(typeWriter, 800);
+    </script>
+    <style>
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
 </body>
 </html>
