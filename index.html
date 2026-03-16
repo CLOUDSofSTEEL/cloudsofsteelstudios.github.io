@@ -160,6 +160,12 @@
                 transform: translateY(0);
             }
         }
+        
+        @keyframes blink { 
+            0%, 100% { opacity: 1; } 
+            50% { opacity: 0; } 
+        }
+
         /* Easter Egg Physics */
         .default-cube {
             position: fixed;
@@ -170,7 +176,7 @@
             height: 150px;
             background: #8c8c8c;
             border: 2px solid #555;
-            /* Creates a fake 3D lighting effect */
+            /* Fake 3D lighting effect */
             box-shadow: inset -20px -20px 40px rgba(0,0,0,0.3), 0 50px 50px rgba(0,0,0,0.6);
             z-index: 9999;
             display: flex;
@@ -180,31 +186,32 @@
             color: #333;
             font-weight: bold;
             font-size: 1.2em;
-            /* The drop animation */
-            animation: dropIn 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+            /* Grabbable icon on hover */
+            cursor: grab;
+            /* The updated drop-and-bounce animation */
+            animation: dropAndBounce 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
 
-        @keyframes dropIn {
+        @keyframes dropAndBounce {
             0% { top: -300px; transform: rotate(-10deg); }
+            /* Hit the point */
+            50% { top: 40%; transform: rotate(4deg); }
+            /* Bounce up */
+            65% { top: 35%; transform: rotate(2deg); }
+            /* Settle back */
             100% { top: 40%; transform: rotate(4deg); }
         }
 
-        /* The Screen Shake */
-        .screen-shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
-        }
-
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-5px, 5px, 0); }
-            20%, 80% { transform: translate3d(5px, -5px, 0); }
-            30%, 50%, 70% { transform: translate3d(-12px, 10px, 0); }
-            40%, 60% { transform: translate3d(12px, -10px, 0); }
+        /* Enhanced effect while dragging */
+        .default-cube.dragging {
+            cursor: grabbing;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2), 0 0px 5px rgba(49, 130, 206, 0.5);
+            border-color: #3182ce;
+            animation: none; /* Disables bounce animation while dragging */
+            transform: rotate(4deg); /* Keeps the tilt consistent while dragging */
         }
     </style>
 </head>
-    <div style="text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid #222;">
-        <a href="login.html" style="color: #444; font-size: 0.8em; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">Team Login</a>
-    </div>
 <body>
     <header class="animate-up">
         <h1>Clouds of Steel Studios</h1>
@@ -235,70 +242,98 @@
             <a href="contact.html" class="btn">Contact Us</a>
         </div>
     </div>
+
+    <div style="text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid #222;">
+        <a href="login.html" style="color: #444; font-size: 0.8em; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">Team Login</a>
+    </div>
+
     <script>
+        // --- TYPING EFFECT ---
         const subtitle = document.querySelector('.subtitle');
         const text = "Independent Game Development";
         subtitle.innerHTML = '';
-        let i = 0;
+        let i_type = 0;
         
         function typeWriter() {
-            if (i < text.length) {
-                subtitle.innerHTML += text.charAt(i);
-                i++;
+            if (i_type < text.length) {
+                subtitle.innerHTML += text.charAt(i_type);
+                i_type++;
                 setTimeout(typeWriter, 100);
             } else {
-                // Adds the blinking cursor at the end
                 subtitle.innerHTML += '<span style="animation: blink 1s infinite;">_</span>';
             }
         }
         
-        // Starts the typing effect after a short delay so the page can fade in first
         setTimeout(typeWriter, 800);
-    </script>
-    <style>
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    </style>
-    <script>
-        // The Konami Code sequence
+
+        // --- KONAMI CODE EASTER EGG ---
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
 
         document.addEventListener('keydown', function(e) {
-            // Check if the key pressed matches the next key in the sequence
             if (e.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
-                // If the whole sequence is completed
                 if (konamiIndex === konamiCode.length) {
                     triggerEasterEgg();
-                    konamiIndex = 0; // Reset so they can do it again
+                    konamiIndex = 0; 
                 }
             } else {
-                konamiIndex = 0; // Reset if they mess up the combo
+                konamiIndex = 0; 
             }
         });
 
         function triggerEasterEgg() {
-            // Prevent spawning 100 cubes if they mash the code
+            // Stop them from spawning 50 cubes
             if (document.getElementById('unity-cube')) return;
 
-            // Spawn the default cube
             const cube = document.createElement('div');
             cube.id = 'unity-cube';
             cube.className = 'default-cube';
             cube.innerText = 'Cube';
             document.body.appendChild(cube);
 
-            // Wait for the cube to hit the ground (600ms), then shake the screen
+            // Wait for the CSS bounce animation to finish (1200ms) before making it draggable
             setTimeout(() => {
-                document.body.classList.add('screen-shake');
-                
-                // Reset the shake physics after a moment
-                setTimeout(() => {
-                    document.body.classList.remove('screen-shake');
-                }, 400);
-
-            }, 600); 
+                // Get the exact pixel coordinates it landed on
+                const rect = cube.getBoundingClientRect();
+                cube.style.top = rect.top + 'px';
+                cube.style.left = rect.left + 'px';
+                cube.style.marginLeft = '0px'; // Remove CSS centering so JS takes full control
+            }, 1200); 
         }
+
+        // --- DRAG LOGIC ---
+        let isDragging = false;
+        let offsetX, offsetY;
+        let draggedCube;
+
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.id === 'unity-cube') {
+                isDragging = true;
+                draggedCube = e.target;
+                draggedCube.classList.add('dragging');
+                
+                // Calculate where inside the cube they clicked
+                offsetX = e.clientX - draggedCube.offsetLeft;
+                offsetY = e.clientY - draggedCube.offsetTop;
+            }
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                e.preventDefault(); // Stop text highlighting while dragging
+                draggedCube.style.left = (e.clientX - offsetX) + 'px';
+                draggedCube.style.top = (e.clientY - offsetY) + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                draggedCube.classList.remove('dragging');
+                draggedCube = null;
+            }
+        });
     </script>
 </body>
 </html>
